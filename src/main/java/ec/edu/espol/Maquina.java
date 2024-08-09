@@ -1,10 +1,10 @@
 package ec.edu.espol;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Maquina extends Jugador {
-    public Maquina(String nombre, ArrayList<Carta> mano) {
+    public Maquina(String nombre, List<Carta> mano) {
         super("Máquina", mano);
     }
 

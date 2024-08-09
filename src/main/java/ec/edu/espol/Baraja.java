@@ -1,18 +1,27 @@
 package ec.edu.espol;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
 
 public class Baraja {
-    private ArrayList<Carta> baraja;
+    private List<Carta> cBaraja;
 
     public Baraja(){
-        baraja= new ArrayList<>();
+        cBaraja= new ArrayList<>();
         crearBaraja();
-        Collections.shuffle(baraja);
+        mezclar();
     }
 
-    public ArrayList<Carta> getBaraja(){
-        return baraja;
+    public List<Carta> getBaraja(){
+        return cBaraja;
+    }
+
+    public void mezclar(){
+        Collections.shuffle(cBaraja);
+    }
+
+    public void agregarCarta(Carta c){
+        cBaraja.add(c);
     }
 
     public void crearBaraja(){
@@ -21,28 +30,28 @@ public class Baraja {
 
         for (String color:colores){
             for(String tipo:tipos){
-                baraja.add(new Carta(tipo, color));
+                cBaraja.add(new Carta(tipo, color));
             }
         }
 
         String[] comodinesN={"+4", "%","+2"};
         for (String tipo:comodinesN){
-            baraja.add(new Carta(tipo,"N"));
-            baraja.add(new Carta(tipo,"N"));
+            cBaraja.add(new Carta(tipo,"N"));
+            cBaraja.add(new Carta(tipo,"N"));
         }
     }
     
     public Carta robarCarta(){
-        if(baraja.size()==0){
+        if(cBaraja.isEmpty()){//DEMAS
             return null;
         }
-        return baraja.remove(0);
+        return cBaraja.remove(0);
     }
 
-    public ArrayList<Carta> crearMano(){
-        ArrayList<Carta> mano= new ArrayList<>();
+    public List<Carta> crearMano(){
+        List<Carta> mano= new ArrayList<>();
         for (int i=0; i<7; i++){
-            mano.add(baraja.remove(i));
+            mano.add(cBaraja.remove(i));
         }
         return mano;
     }

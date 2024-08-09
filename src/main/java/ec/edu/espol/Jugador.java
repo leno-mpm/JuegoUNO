@@ -1,18 +1,18 @@
 package ec.edu.espol;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Jugador {
-    protected ArrayList<Carta> mano;
+    protected List<Carta> mano;
     private String nombre;
 
-    public Jugador(String nombre, ArrayList<Carta> mano) {
+    public Jugador(String nombre, List<Carta> mano) {
         this.nombre = nombre;
         this.mano = mano;
     }
 
-    public ArrayList<Carta> getMano() {
+    public List<Carta> getMano() {
         return mano;
     }
 
@@ -21,16 +21,19 @@ public class Jugador {
     }
 
     public Carta removerCartaMano(int i, Carta c) {
-        if (i < 0 || i >= mano.size()) {
-            return null;
-        }
-
         Carta cartaSeleccionada = getMano().get(i);
         if (cartaSeleccionada.getColor().equals("N")) {
             Scanner sc = new Scanner(System.in);
-            System.out.println("¿A que color desea cambiar la carta? ==> ");
-            String color = sc.nextLine();
-            cartaSeleccionada.setColor(color);
+            String color = "";
+            while(!color.equalsIgnoreCase("A")&& !color.equalsIgnoreCase("Z") && !color.equalsIgnoreCase("V") &&  !color.equalsIgnoreCase("R")){
+                System.out.println("¿A que color desea cambiar la carta? ==> ");
+                color = sc.nextLine();
+                if(!color.equalsIgnoreCase("A")&&  !color.equalsIgnoreCase("Z") &&  !color.equalsIgnoreCase("V") &&  !color.equalsIgnoreCase("R")){
+                    System.out.println("Color incorrecto, debes! elegir entre (A-Z-V-R)");
+                }
+            }
+            cartaSeleccionada.setColor(color.toUpperCase());
+            sc.close();
             return mano.remove(i);
         } else if (cartaSeleccionada.getColor().equals(c.getColor()) || cartaSeleccionada.getTipo().equals(c.getTipo())) {
             return mano.remove(i);
@@ -45,6 +48,10 @@ public class Jugador {
             }
         }
         return false;
+    }
+
+    public void agregarCarta(Carta carta) {
+        this.mano.add(carta);
     }
 
     @Override
