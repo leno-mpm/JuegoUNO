@@ -5,6 +5,10 @@ import java.util.List;
 public class Juego {
     private static Carta ultimaCarta;
     protected static int turno;
+    private Juego() {
+        // Constructor privado para evitar la instanciación
+    }
+    
     public static void iniciarJuego() {
         Baraja baraja = new Baraja();
         Jugador jugador = new Jugador("Jugador", baraja.crearMano());
@@ -81,7 +85,6 @@ public class Juego {
                 }
             }
             if(baraja.getBaraja().size() <= 10){
-                System.out.println("SIN CARTASSSSSSSSSSSSSSSSSSSSSSSS");
                 for(Carta c: nuevaBaraja){
                     baraja.agregarCarta(c);
                 }
