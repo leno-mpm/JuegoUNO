@@ -1,15 +1,20 @@
 package ec.edu.espol;
 import java.util.Scanner;
+import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.List;
+
 public class Juego {
-    private static Carta ultimaCarta;
     protected static int turno;
+    private static final Logger logger = Logger.getLogger("Juego.class.getName()");
+
     private Juego() {
         // Constructor privado para evitar la instanciación
     }
     
     public static void iniciarJuego() {
+        
+        Carta ultimaCarta;
         Baraja baraja = new Baraja();
         Jugador jugador = new Jugador("Jugador", baraja.crearMano());
         Maquina maquina = new Maquina("Máquina", baraja.crearMano());
@@ -20,10 +25,11 @@ public class Juego {
             baraja.getBaraja().add(ultimaCarta);
             ultimaCarta = baraja.robarCarta();
         }
-
+        
         turno = 1;
         Scanner sc = new Scanner(System.in);
-        while (jugador.getMano().size() != 0 && maquina.getMano().size() != 0) {
+        
+        while (jugador.getMano().isEmpty() != true && maquina.getMano().isEmpty() != true) {
 
             Utilitaria.mostrarEstadoDelJuego(jugador, maquina, ultimaCarta);
 
@@ -37,12 +43,12 @@ public class Juego {
                             indice = sc.nextInt();
                             sc.nextLine();
                             if (indice < 0 || indice >= jugador.getMano().size()) {
-                                System.out.println("Índice fuera de rango. Intente nuevamente.");
+                                logger.warning("Jugador ingresó un índice fuera de rango: " + indice);
                             }
                         } while (indice < 0 || indice >= jugador.getMano().size());
                         cartaRemovida = jugador.removerCartaMano(indice, ultimaCarta);
                         if (cartaRemovida == null) {
-                            System.out.println("No se puede tirar esta carta, intente con otra.");
+                            logger.info("Jugador intentó jugar una carta inválida en el índice: " + indice);
                         }
                     }
 
@@ -51,14 +57,14 @@ public class Juego {
                     ultimaCarta = cartaRemovida;
                     
                     if (jugador.getMano().size() == 1) {
-                        System.out.println("¡UNOOOOOOOOOOOOO!");
+                        logger.info("¡UNO!");
                     }
                 }
                 else {
                     Carta carta = baraja.robarCarta();
                     if (carta != null) {
                         jugador.getMano().add(carta);
-                        System.out.println("Carta añadida a tu mano: " + carta);
+                        logger.info("Carta añadida a la mano del jugador: " + carta);
                     }
                     turno=2;
                 }
@@ -71,7 +77,7 @@ public class Juego {
                         nuevaBaraja.add(ultimaCarta);
                         ultimaCarta = cartaRemovida;
                         if (maquina.getMano().size() == 1) {
-                            System.out.println("Máquina: ¡UNOOOOOOO!");
+                            logger.info("¡UNO!");
                         }
                     }
                 } 
@@ -79,7 +85,7 @@ public class Juego {
                     Carta carta = baraja.robarCarta();
                     if (carta != null) {
                         maquina.getMano().add(carta);
-                        System.out.println("Carta añadida a la mano de la máquina: " + carta);
+                        logger.info("Carta añadida a la mano de la máquina: " + carta);
                     }
                     turno=1;
                 }
@@ -94,9 +100,9 @@ public class Juego {
         }
 
         if (jugador.getMano().isEmpty()) {
-            System.out.println("¡Jugador ha ganado! 🥳🏆");
+            logger.info("¡Jugador ha ganado! 🥳🏆");
         } else if (maquina.getMano().isEmpty()) {
-            System.out.println("¡Máquina ha ganado! 🥳🏆");
+            logger.info("¡Máquina ha ganado! 🥳🏆");
         } 
         sc.close();
     }

@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Maquina extends Jugador {
+    private static final Random rand = new Random();
     public Maquina(String nombre, List<Carta> mano) {
-        super("Máquina", mano);
+        super("Máquina", mano); 
     }
 
     @Override
@@ -13,9 +14,7 @@ public class Maquina extends Jugador {
 
         Carta cartaSeleccionada = getMano().get(i);
         if (cartaSeleccionada.getColor().equals("N")) {
-            // Máquina elige un color aleatorio
             String[] colores = {"R", "A", "V", "Z"};
-            Random rand = new Random();
             String color = colores[rand.nextInt(colores.length)];
             cartaSeleccionada.setColor(color);
             return mano.remove(i);

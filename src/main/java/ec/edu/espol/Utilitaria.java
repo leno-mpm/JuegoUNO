@@ -1,26 +1,28 @@
 package ec.edu.espol;
 
 public class Utilitaria {
+    private static final String LINEA_SEPARADORA = "*****************************************";
+    private Utilitaria(){
+        // Constructor privado para evitar la instanciación
+    }
     public static void mostrarMensajeBienvenida() {
-        System.out.println("*****************************************");
+        System.out.println(LINEA_SEPARADORA);
         System.out.println("*                                       *");
         System.out.println("*            ¡Bienvenidos a             *");
         System.out.println("*                  UNO!                 *");
         System.out.println("*                                       *");
-        System.out.println("*****************************************");
+        System.out.println(LINEA_SEPARADORA);
         System.out.println("        ¡Que comience el juego!");
-        System.out.println("*****************************************");
+        System.out.println(LINEA_SEPARADORA);
 
     }
     
     public static void mostrarEstadoDelJuego(Jugador j, Jugador m, Carta ultimaCarta) {
-        System.out.println();
-        System.out.println("========================================");
+        System.out.println("\n========================================");
         System.out.println(j);
         System.out.println(m);
         System.out.println("Carta en juego: " + ultimaCarta);
-        System.out.println("========================================");
-        System.out.println();
+        System.out.println("========================================\n");
     }
 
     

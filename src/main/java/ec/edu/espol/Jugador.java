@@ -2,10 +2,12 @@ package ec.edu.espol;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Jugador {
     protected List<Carta> mano;
     private String nombre;
+    private static final Logger logger = Logger.getLogger("Jugador.class.getName()");
 
     public Jugador(String nombre, List<Carta> mano) {
         this.nombre = nombre;
@@ -29,7 +31,7 @@ public class Jugador {
                 System.out.println("¿A que color desea cambiar la carta? ==> ");
                 color = sc.nextLine();
                 if(!color.equalsIgnoreCase("A")&&  !color.equalsIgnoreCase("Z") &&  !color.equalsIgnoreCase("V") &&  !color.equalsIgnoreCase("R")){
-                    System.out.println("Color incorrecto, debes! elegir entre (A-Z-V-R)");
+                    logger.warning("Color incorrecto, el usuario ingresó un color no válido. Debe elegir entre (A-Z-V-R)");
                 }
             }
             cartaSeleccionada.setColor(color.toUpperCase());
