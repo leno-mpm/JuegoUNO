@@ -2,5 +2,5 @@ projectKey=TeamPelaez
 serverUrl=http://localhost:9000
 serverVersion=10.6.0.92116
 dashboardUrl=http://localhost:9000/dashboard?id=TeamPelaez
-ceTaskId=abc98dac-ad5a-4ac7-bf12-eea10d3efa19
-ceTaskUrl=http://localhost:9000/api/ce/task?id=abc98dac-ad5a-4ac7-bf12-eea10d3efa19
+ceTaskId=8e795046-9353-40bd-85f0-32b04d42c42c
+ceTaskUrl=http://localhost:9000/api/ce/task?id=8e795046-9353-40bd-85f0-32b04d42c42c

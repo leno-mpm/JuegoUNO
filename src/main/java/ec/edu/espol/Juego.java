@@ -29,7 +29,7 @@ public class Juego {
         turno = 1;
         Scanner sc = new Scanner(System.in);
         
-        while (jugador.getMano().isEmpty() != true && maquina.getMano().isEmpty() != true) {
+        while (!jugador.getMano().isEmpty() && !maquina.getMano().isEmpty()) {
 
             Utilitaria.mostrarEstadoDelJuego(jugador, maquina, ultimaCarta);
 

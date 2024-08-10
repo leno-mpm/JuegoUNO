@@ -51,7 +51,7 @@ public class Baraja {
     public List<Carta> crearMano(){
         List<Carta> mano= new ArrayList<>();
         for (int i=0; i<7; i++){
-            mano.add(cBaraja.remove(i));
+            mano.add(cBaraja.remove(0));
         }
         return mano;
     }
