@@ -1,10 +1,11 @@
 package ec.edu.espol;
 
+import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
 
 public class Maquina extends Jugador {
-    private static final Random rand = new Random();
+    // Usando Random ya que no es una operación sensible a la seguridad
+    private static final SecureRandom rand = new SecureRandom();
     public Maquina(String nombre, List<Carta> mano) {
         super("Máquina", mano); 
     }
